@@ -4,20 +4,19 @@ import LoginView from "../views/Public/LoginView.vue";
 // import beforeEach from "./before-each";
 
 const routes = [
-    {
-        path: process.env.VUE_APP_PUBLIC_PATH + "login",
-        name: "login",
-        component: LoginView,
-        meta: {
-          isPublic: true,
-        },
-      },
+  {
+    path: process.env.VUE_APP_PUBLIC_PATH + "login",
+    name: "login",
+    component: LoginView,
+    meta: {
+      isPublic: true,
+    },
+  },
   {
     path: process.env.VUE_APP_PUBLIC_PATH,
     name: "home",
     component: HomeView,
   },
-
 ];
 
 const router = createRouter({
