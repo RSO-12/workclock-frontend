@@ -6,12 +6,12 @@ import { createVuetify } from 'vuetify'
 const myCustomTheme = {
     dark: false,
     colors: {
-      background: '#FFFFFF',
+      background: '#FFFFFF', // #F9FAFC
       surface: '#FFFFFF',
-      primary: '#6C63FF',
-      'primary-darken-1': '#3700B3',
-      secondary: '#03DAC6',
-      'secondary-darken-1': '#018786',
+      primary: '#6C63FF', // 
+      'primary-darken-1': '#3700B3', // sidebar - #101827
+      secondary: '#03DAC6', // zelena - #12B981
+      'secondary-darken-1': '#018786', // siva - #9CA3AF
       error: '#B00020',
       info: '#2196F3',
       success: '#4CAF50',

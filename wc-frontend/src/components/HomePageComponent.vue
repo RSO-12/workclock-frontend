@@ -12,7 +12,7 @@
 
     <v-row no-gutters class="mt-4">
       <v-col>
-        <v-sheet class=" pa-10 mx-4 br-15">
+        <v-sheet class=" pa-10 mx-4 br-15" elevation="1">
           <v-row>
             <v-col class="d-flex flex-column justify-center text-left">
               <span class="card-titles font-weight-medium">WORK HOURS</span>
@@ -26,7 +26,7 @@
       </v-col>
 
       <v-col>
-        <v-sheet class="d-flex flex-column pa-10 mx-4 br-15 font-weight-bold">
+        <v-sheet class="pa-10 mx-4 br-15">
           <v-row>
             <v-col class="d-flex flex-column justify-center text-left">
               <span class="card-titles font-weight-medium">OVERTIME HOURS</span>
@@ -40,7 +40,7 @@
       </v-col>
 
       <v-col>
-        <v-sheet class="d-flex flex-column pa-10 mx-4 br-15 font-weight-bold">
+        <v-sheet class="pa-10 mx-4 br-15">
           <v-row>
             <v-col class="d-flex flex-column justify-center text-left">
               <span class="card-titles font-weight-medium">ALL HOURS</span>

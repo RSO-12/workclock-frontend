@@ -1,16 +1,21 @@
 <template>
     <div class="history-layout">
-        <div class="history-content pa-5">
-            <div class="d-flex justify-end">
-                <v-btn variant="solo" @click="downloadFile()">
-                    <v-icon icon="mdi-file-table" size="30" color="blue-darken-2"></v-icon>
-                    <v-tooltip activator="parent" location="bottom">Download PDF</v-tooltip>
-                </v-btn>
-                <v-btn variant="solo" @click="downloadFile()">
-                    <v-icon icon="mdi-file-chart" size="30" color="red-darken-2"></v-icon>
-                    <v-tooltip activator="parent" location="bottom">Download PDF</v-tooltip>
-                </v-btn>
-            </div>
+        <div class="history-content px-5 pb-5 pt-2">
+            <v-col class=" d-flex justify-center align-center text-center">
+                <v-row>
+                    <h3>Activity overview</h3>
+                </v-row>
+                <v-row class="ma-0 justify-end">
+                    <v-btn class="mr-2" icon variant="solo" @click="downloadFile()" elevation="1">
+                        <v-icon icon="mdi-file-table" size="30" color="blue-darken-2"></v-icon>
+                        <v-tooltip activator="parent" location="bottom">Download PDF</v-tooltip>
+                    </v-btn>
+                    <v-btn icon variant="solo" @click="downloadFile()" elevation="1">
+                        <v-icon icon="mdi-file-chart" size="30" color="#D14343"></v-icon>
+                        <v-tooltip activator="parent" location="bottom">Download PDF</v-tooltip>
+                    </v-btn>
+                </v-row>
+            </v-col>
             <table class="history-table">
                 <thead>
                     <tr>
@@ -23,7 +28,7 @@
                 <tbody>
                     <tr v-for="(event, index) in events" :key="index">
                         <td class="chip-cell">
-                            <v-chip class="chip-stlye" :color="event.color" variant="flat" compact>{{ event.type }}</v-chip>
+                            <v-chip class="chip-stlye" :color="event.color">{{ event.type }}</v-chip>
                         </td>
                         <td>{{ event.date }}</td>
                         <td>{{ event.startTime }} - {{ event.endTime }}</td>
@@ -90,7 +95,7 @@ export default {
 }
 
 .history-table tr:hover {
-   background-color: #c8c8c8;
+    background-color: #d4d7df;
 }
 
 .history-table,
@@ -105,7 +110,7 @@ td {
 
 th {
     height: 50px;
-    background-color: #dedede76;
+    background-color: #ebecf3;
 }
 
 .chip-cell {
@@ -122,14 +127,13 @@ th {
     width: 80px;
     height: 30px !important;
     margin: 2px;
-    color: white !important
 }
 
 .history-table tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #eeeff3;
 }
 
 .history-table tr:nth-child(even):hover {
-    background-color: #c8c8c8;
+    background-color: #d4d7df;
 }
 </style>
