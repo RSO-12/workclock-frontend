@@ -14,19 +14,25 @@
                 <h2 class="mb-4" style="font-family: 'Inter', sans-serif;">WORKCLOCK</h2>
                 <v-card-text
                     class="pa-0">
+                    <div class="pl-1 text-subtitle-2 text-medium-emphasis text-left">
+                        EMAIL
+                    </div>
                     <v-text-field
                         class="input-field"
-                        label="Username"
-                        v-model="username"
+                        placeholder="john@google.com"
+                        v-model="email"
                         variant="solo"
                         rounded="lg"
                         bg-color="rgba(255, 255, 255, 0.02)"
                     ></v-text-field>
+                    <div class="pl-1 text-subtitle-2 text-medium-emphasis text-left">
+                        PASSWORD
+                    </div>
                     <v-text-field
                         variant="solo"
                         bg-color="rgba(255, 255, 255, 0.02)"
                         rounded="lg"
-                        label="Password"
+                        placeholder="123456"
                         v-model="password"
                         type="password"
                     ></v-text-field>
@@ -52,7 +58,7 @@
 export default {
     data() {
     return {
-      username: "",
+      email: "",
       password: "",
       errors: "",
     };

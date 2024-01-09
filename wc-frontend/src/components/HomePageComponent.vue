@@ -1,49 +1,74 @@
 <template>
-  <v-container class="ma-0" fluid style="background-color: #F2F2F2; height:100vh">
+  <v-container class="ma-0 pa-25" fluid style="background-color: #F9FAFC; height:100vh">
     <v-row>
       <v-col>
         <v-sheet class="time-card pa-2 ma-4 br-15 font-weight-bold d-flex align-center">
           <div class="time-display flex-grow-1 d-flex justify-center">01:45:02</div>
-            <v-select
-              class="select-menu"
-              :class="selectClass"
-              v-model="selectedOption"
-              :items="['Start', 'Work', 'Remote', 'Break', 'Lunch', 'Stop']"
-              dense
-              rounded
-              solo
-              hide-details
-          ></v-select>
+          <v-select class="select-menu" :class="selectClass" v-model="selectedOption"
+            :items="['Start', 'Work', 'Remote', 'Break', 'Lunch', 'Stop']" dense rounded solo hide-details></v-select>
         </v-sheet>
       </v-col>
     </v-row>
 
     <v-row no-gutters class="mt-4">
       <v-col>
-        <span class="card-titles font-weight-medium">Work hours</span>
-        <v-sheet class="grid-cards pa-10 mx-4 br-15 font-weight-bold"> 80 </v-sheet>
+        <v-sheet class=" pa-10 mx-4 br-15">
+          <v-row>
+            <v-col class="d-flex flex-column justify-center text-left">
+              <span class="card-titles font-weight-medium">WORK HOURS</span>
+              <span class="font-weight-bold grid-cards-font">{{ this.workHours }} h</span>
+            </v-col>
+            <v-col>
+              <img src="../assets/doughnut.png" alt="chart" height="150px">
+            </v-col>
+          </v-row>
+        </v-sheet>
       </v-col>
 
       <v-col>
-        <span class="card-titles font-weight-medium">Overtime hours</span>
-        <v-sheet class="grid-cards pa-10 mx-4 br-15 font-weight-bold"> 100 </v-sheet>
+        <v-sheet class="d-flex flex-column pa-10 mx-4 br-15 font-weight-bold">
+          <v-row>
+            <v-col class="d-flex flex-column justify-center text-left">
+              <span class="card-titles font-weight-medium">OVERTIME HOURS</span>
+              <span class="font-weight-bold grid-cards-font">{{ this.overtimeHours }} h</span>
+            </v-col>
+            <v-col>
+              <img src="../assets/doughnut-overtime.png" alt="chart" height="150px">
+            </v-col>
+          </v-row>
+        </v-sheet>
       </v-col>
 
       <v-col>
-        <span class="card-titles font-weight-medium">Together</span>
-        <v-sheet class="grid-cards pa-10 mx-4 br-15 font-weight-bold"> 180 </v-sheet>
+        <v-sheet class="d-flex flex-column pa-10 mx-4 br-15 font-weight-bold">
+          <v-row>
+            <v-col class="d-flex flex-column justify-center text-left">
+              <span class="card-titles font-weight-medium">ALL HOURS</span>
+              <span class="font-weight-bold grid-cards-font">{{ this.hoursTogether }} h</span>
+            </v-col>
+            <v-col>
+              <img src="../assets/doughnut-all.png" alt="chart" height="150px">
+            </v-col>
+          </v-row>
+        </v-sheet>
       </v-col>
     </v-row>
 
-    <v-row no-gutters class="mt-4">
+    <v-row no-gutters class="mt-4 text-left">
       <v-col>
-        <span class="card-titles font-weight-medium">Yearly analytics</span>
-        <v-sheet class="grid-cards pa-10 mx-4 br-15"> Graph </v-sheet>
+        <v-sheet class="grid-cards pa-10 mx-4 br-15">
+          <span class="card-titles font-weight-bold" style="color: black">Yearly analytics</span>
+          <v-divider></v-divider>
+          Graph
+        </v-sheet>
       </v-col>
-
+      
       <v-col>
-        <span class="card-titles font-weight-medium"> Daily overview</span>
-        <v-sheet class="grid-cards pa-10 mx-4 br-15"> Graph </v-sheet>
+        <v-sheet class="grid-cards pa-10 mx-4 br-15">
+          <span class="card-titles font-weight-bold" style="color: black"> Daily overview</span>
+          <v-divider></v-divider>
+          Graph 
+        </v-sheet>
       </v-col>
     </v-row>
   </v-container>
@@ -54,6 +79,9 @@ export default {
   name: "HomePageComponent",
   data() {
     return {
+      workHours: 80,
+      overtimeHours: 100,
+      hoursTogether: 180,
       selectedOption: 'Start',
       selectColor: '#53A2BE',
     };
@@ -84,28 +112,29 @@ export default {
 </script>
 
 <style>
-.br-15{
-    border-radius: 15px !important;
+.br-15 {
+  border-radius: 15px !important;
 }
 
-.card-titles{
-    font-size: 1.2em;
+.card-titles {
+  font-size: 1.2em;
+  color: #AEB6C2
 }
 
 .time-card {
-    display: flex;
-    align-items: center; 
-    position: relative;
-    justify-content: space-between;
-    font-size: 2em;
+  display: flex;
+  align-items: center;
+  position: relative;
+  justify-content: space-between;
+  font-size: 2em;
 }
 
-.grid-cards{
-    font-size: 2em;
+.grid-cards-font {
+  font-size: 3.5em;
 }
 
 .flex-grow-1 {
-    flex: 1;
+  flex: 1;
 }
 
 .select-menu {
@@ -115,15 +144,15 @@ export default {
 }
 
 .select-start {
-  background-color: #53A2BE !important;
+  background-color: #5048E4 !important;
 }
 
-.select-work{
-  background-color: #499F68 !important;
+.select-work {
+  background-color: #14B8A6 !important;
 }
 
 .select-remote {
-  background-color: #FAC748 !important;
+  background-color: #FFB020 !important;
 }
 
 .select-break {
@@ -135,7 +164,6 @@ export default {
 }
 
 .select-stop {
-  background-color: #E63946 !important;
+  background-color: #D14343 !important;
 }
-
 </style>
