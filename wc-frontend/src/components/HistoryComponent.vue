@@ -80,7 +80,7 @@ export default {
 <style>
 .history-layout {
     height: 100vh;
-    background-color: #F9FAFC;
+    background-color: #eeeff2;
     padding: 25px 25px;
 }
 

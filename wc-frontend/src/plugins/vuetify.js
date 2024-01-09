@@ -6,7 +6,7 @@ import { createVuetify } from 'vuetify'
 const myCustomTheme = {
     dark: false,
     colors: {
-      background: '#FFFFFF', // #F9FAFC
+      background: '#FFFFFF', // #eeeff2
       surface: '#FFFFFF',
       primary: '#6C63FF', // 
       'primary-darken-1': '#3700B3', // sidebar - #101827

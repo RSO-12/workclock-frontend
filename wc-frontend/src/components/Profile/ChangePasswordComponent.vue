@@ -99,6 +99,9 @@ export default {
       this.newPass = "";
       this.confirmPass = "";
     },
+    changePassword(){
+      return;
+    },
     currentPasswordRule() {},
     passwordRules() {
       return [

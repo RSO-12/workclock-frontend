@@ -1,8 +1,8 @@
 <template>
-  <v-container class="ma-0 pa-25" fluid style="background-color: #F9FAFC; height:100vh">
+  <v-container class="ma-0 pa-25" fluid style="background-color: #eeeff2; height:100vh">
     <v-row>
       <v-col>
-        <v-sheet class="time-card pa-2 ma-4 br-15 font-weight-bold d-flex align-center">
+        <v-sheet class="time-card pa-2 ma-4 br-15 font-weight-bold d-flex align-center" elevation="1">
           <div class="time-display flex-grow-1 d-flex justify-center">01:45:02</div>
           <v-select class="select-menu" :class="selectClass" v-model="selectedOption"
             :items="['Start', 'Work', 'Remote', 'Break', 'Lunch', 'Stop']" dense rounded solo hide-details></v-select>
@@ -19,35 +19,35 @@
               <span class="font-weight-bold grid-cards-font">{{ this.workHours }} h</span>
             </v-col>
             <v-col>
-              <img src="../assets/doughnut.png" alt="chart" height="150px">
+              <img src="../assets/doughnut.png" alt="chart" height="120px">
             </v-col>
           </v-row>
         </v-sheet>
       </v-col>
 
       <v-col>
-        <v-sheet class="pa-10 mx-4 br-15">
+        <v-sheet class="pa-10 mx-4 br-15" elevation="1">
           <v-row>
             <v-col class="d-flex flex-column justify-center text-left">
               <span class="card-titles font-weight-medium">OVERTIME HOURS</span>
               <span class="font-weight-bold grid-cards-font">{{ this.overtimeHours }} h</span>
             </v-col>
             <v-col>
-              <img src="../assets/doughnut-overtime.png" alt="chart" height="150px">
+              <img src="../assets/doughnut-overtime.png" alt="chart" height="120px">
             </v-col>
           </v-row>
         </v-sheet>
       </v-col>
 
       <v-col>
-        <v-sheet class="pa-10 mx-4 br-15">
+        <v-sheet class="pa-10 mx-4 br-15" elevation="1">
           <v-row>
             <v-col class="d-flex flex-column justify-center text-left">
               <span class="card-titles font-weight-medium">ALL HOURS</span>
               <span class="font-weight-bold grid-cards-font">{{ this.hoursTogether }} h</span>
             </v-col>
             <v-col>
-              <img src="../assets/doughnut-all.png" alt="chart" height="150px">
+              <img src="../assets/doughnut-all.png" alt="chart" height="120px">
             </v-col>
           </v-row>
         </v-sheet>
@@ -56,7 +56,7 @@
 
     <v-row no-gutters class="mt-4 text-left">
       <v-col>
-        <v-sheet class="grid-cards pa-10 mx-4 br-15">
+        <v-sheet class="grid-cards pa-10 mx-4 br-15" elevation="1">
           <span class="card-titles font-weight-bold" style="color: black">Yearly analytics</span>
           <v-divider></v-divider>
           Graph
@@ -64,7 +64,7 @@
       </v-col>
       
       <v-col>
-        <v-sheet class="grid-cards pa-10 mx-4 br-15">
+        <v-sheet class="grid-cards pa-10 mx-4 br-15" elevation="1">
           <span class="card-titles font-weight-bold" style="color: black"> Daily overview</span>
           <v-divider></v-divider>
           Graph 
@@ -130,7 +130,7 @@ export default {
 }
 
 .grid-cards-font {
-  font-size: 3.5em;
+  font-size: 3em;
 }
 
 .flex-grow-1 {
