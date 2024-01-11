@@ -65,9 +65,8 @@
                         </div>
                         <v-text-field v-model="tempEvent.selectedDate" variant="solo" rounded="lg"
                             bg-color="rgba(255, 255, 255, 0.02)" @click="showDatePicker = true"></v-text-field>
-                        <v-dialog v-model="showDatePicker">
-                            <v-date-picker color="primary"
-                               ></v-date-picker>
+                        <v-dialog v-model="showDatePicker" width="500px" style="margin: auto;">
+                            <v-date-picker v-model="date" color="primary"></v-date-picker>
                         </v-dialog>
                     </v-col>
                 </v-row>
@@ -116,6 +115,7 @@ export default {
             editEventDialog: false,
             showDatePicker: false,
             selectedDate: null,
+            date: new Date('2024-01-11'),
             tempEvent: {
                 id: null,
                 selectedOption: '',
@@ -214,8 +214,24 @@ export default {
             };
             this.editEventDialog = false;
         },
+        formatDate(date) {
+            const d = new Date(date);
+            const day = d.getDate().toString().padStart(2, '0');
+            const month = (d.getMonth() + 1).toString().padStart(2, '0');
+            const year = d.getFullYear();
+            return `${day}/${month}/${year}`;
+        },
         getEventTypeColor(type) {
             return this.eventTypeColors[type] || 'defaultColor';
+        },
+    },
+    watch: {
+        date(newDate) {
+            if (newDate) {
+                const formattedDate = this.formatDate(newDate);
+                this.tempEvent.selectedDate = formattedDate;
+                this.showDatePicker = false;
+            }
         },
     },
 };
@@ -288,5 +304,9 @@ td {
 
 .action-btn:hover {
     opacity: 0.7;
+}
+
+.date-dialog{
+    background-color: white;
 }
 </style>
