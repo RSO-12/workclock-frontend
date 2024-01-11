@@ -58,6 +58,7 @@ import { useAccountStore } from "@/store/account.store.js";
 import UserService from "@/services/user.service.js";
 import { mapStores } from "pinia";
 import { useSocketStore } from "@/store/socket.store";
+import { useLoader } from "@/store/loading.store";
 
 export default {
     data() {
@@ -68,19 +69,22 @@ export default {
     };
   },
   computed: {
-    ...mapStores(useAccountStore, useSocketStore)
+    ...mapStores(useAccountStore, useSocketStore, useLoader)
   },
   name: 'LoginView',
   methods: {
     logIn() {
+      useLoader().show();
       UserService.logIn(this.email, this.password)
         .then(({ is_admin }) => {
           this.accountStore.isAdmin = is_admin;
           useSocketStore().connect(this.email);
           this.$router.push({ name: "home" });
+          useLoader().hide();
         })
         .catch(() => {
           this.errors = 'Invalid credentials';
+          useLoader().hide();
         });
     }
   },

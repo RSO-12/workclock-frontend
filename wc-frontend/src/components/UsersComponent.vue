@@ -215,9 +215,7 @@ export default {
 
       useLoader().show();
       try {
-        await RequestService.delete("services/v1/auth/remove-user", {
-          user_id: userId,
-        });
+        await RequestService.delete(`services/v1/auth/remove-user?id=${userId}`);
         await this.fetchUsers();
       } catch (error) {
         console.log(error);
