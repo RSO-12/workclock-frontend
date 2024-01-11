@@ -6,13 +6,13 @@
                     <h3>Activity overview</h3>
                 </v-row>
                 <v-row class="ma-0 justify-end">
-                    <v-btn class="mr-2" icon variant="solo" @click="downloadFile()" elevation="1">
+                    <v-btn class="mr-2" icon variant="solo" @click="downloadFile('monthly-events')" elevation="1">
                         <v-icon icon="mdi-file-table" size="30" color="blue-darken-2"></v-icon>
-                        <v-tooltip activator="parent" location="bottom">Download PDF</v-tooltip>
+                        <v-tooltip activator="parent" location="bottom">Download monthly events PDF</v-tooltip>
                     </v-btn>
-                    <v-btn icon variant="solo" @click="downloadFile()" elevation="1">
+                    <v-btn icon variant="solo" @click="downloadFile('grouped-monthly-events')" elevation="1">
                         <v-icon icon="mdi-file-chart" size="30" color="#D14343"></v-icon>
-                        <v-tooltip activator="parent" location="bottom">Download PDF</v-tooltip>
+                        <v-tooltip activator="parent" location="bottom">Download grouped events PDF</v-tooltip>
                     </v-btn>
                 </v-row>
             </v-col>
@@ -70,6 +70,9 @@
 </template>
 
 <script>
+import RequestService from '@/services/request.service';
+import { saveAs } from 'file-saver';
+
 export default {
     data() {
         return {
@@ -99,8 +102,11 @@ export default {
         };
     },
     methods: {
-        downloadFile() {
-            alert('he-he');
+        async downloadFile(report) {
+            const response = await RequestService.get(`services/v1/reports/${report}`, null, null, 'blob');
+            console.log(response.data)
+            const blob = new Blob([response], { type: 'application/pdf' });
+            saveAs(blob, `${report}.pdf`);
         },
         openEditEventDialog() {
             this.editEventDialog = !this.editEventDialog;
