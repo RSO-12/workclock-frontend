@@ -6,6 +6,9 @@ import router from './router'
 import RequestService from './services/request.service'
 import TokenService from './services/token.service'
 
+// Event library
+import VueEventer from 'vue-eventer';
+
 // Vuetify
 import vuetify from './plugins/vuetify.js'
 
@@ -19,6 +22,7 @@ const pinia = createPinia()
 const app = createApp(App);
 RequestService.init(process.env.VUE_APP_BASE_API)
 TokenService.readFromStorage();
+app.config.globalProperties.$eventBus = new VueEventer();
 app.use(vuetify);
 app.use(router);
 app.use(pinia);

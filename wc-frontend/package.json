@@ -14,6 +14,7 @@
     "file-saver": "^2.0.5",
     "pinia": "^2.1.7",
     "vue": "^3.2.13",
+    "vue-eventer": "^1.0.0",
     "vue-router": "^4.2.5",
     "vuetify": "^3.4.9"
   },

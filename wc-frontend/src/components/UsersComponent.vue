@@ -292,7 +292,7 @@ export default {
             }
           );
           if (response) {
-            alert("Created new user successfully!");
+            this.$eventBus.$emit("notification", {title: "Created new user!", type: "success"})
             await this.fetchUsers();
           }
         } catch (error) {
