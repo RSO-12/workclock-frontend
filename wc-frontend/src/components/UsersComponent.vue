@@ -19,15 +19,17 @@
                 <thead>
                     <tr>
                         <th>User</th>
+                        <th>Email</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="(user, index) in users" :key="index">
-                        <td>{{ user.username }}</td>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.gmail }}</td>
                         <td>
                             <v-icon class="action-btn mr-2" color="blue" @click="openEditUserDialog">mdi-pencil</v-icon>
-                            <v-icon class="action-btn" color="red">mdi-delete</v-icon>
+                            <v-icon class="action-btn" color="red" @click="deleteUser(user.id)">mdi-delete</v-icon>
                         </td>
                     </tr>
                 </tbody>
@@ -90,15 +92,6 @@
             <div class="pl-1 text-subtitle-2 text-medium-emphasis text-left">
                 PASSWORD
             </div>
-            <v-text-field v-model="password" placeholder="not_123456" type="password" variant="solo" rounded="lg"
-                bg-color="rgba(255, 255, 255, 0.02)" :rules="passwordRules()"
-                :error-messages="errors.password"></v-text-field>
-            <div class="pl-1 text-subtitle-2 text-medium-emphasis text-left">
-                CONFIRM PASSWORD
-            </div>
-            <v-text-field v-model="cPassword" placeholder="not_123456" type="password" variant="solo" rounded="lg"
-                bg-color="rgba(255, 255, 255, 0.02)" :rules="confirmPasswordRules()"
-                :error-messages="errors.password"></v-text-field>
             <v-checkbox value="1" label="Is admin" type="checkbox"></v-checkbox>
             <v-card-actions class="d-flex justify-end">
                 <v-btn color="primary" variant="flat" @click="clearData()">Cancel</v-btn>
@@ -109,6 +102,7 @@
 </template>
 
 <script>
+import RequestService from '@/services/request.service';
 
 export default {
     name: 'UserComponent',
@@ -120,14 +114,24 @@ export default {
         errors: [],
         addUserDialog: false,
         editUserDialog: false,
-        users: [
-            { username: 'Brina' },
-            { username: 'Janez' },
-            { username: 'Brina' },
-            { username: 'Janez' },
-        ],
+        users: [],
     }),
+    created() {
+        this.fetchUsers();
+    },
     methods: {
+        async fetchUsers() {
+            const response = await RequestService.get('services/v1/auth/all');
+            this.users = response.users;
+        },
+        async deleteUser(userId) {
+            if (confirm(`Are you sure you want to delete this user? (id=${userId})`) === false) {
+                return;
+            }
+
+            await RequestService.delete('services/v1/auth/remove-user', { user_id: userId });
+            await this.fetchUsers();
+        },
         openAddUserDialog() {
             this.addUserDialog = !this.addUserDialog;
         },
@@ -184,10 +188,20 @@ export default {
                 },
             ];
         },
-        addUser() {
+        async addUser() {
+            console.log(this.isFormValid)
             if (this.isFormValid) {
                 this.clearData();
-                alert("User added!");
+
+                const response = await RequestService.post('services/v1/auth/register', {
+                    name: this.name,
+                    gmail: this.email,
+                    is_admin: false,
+                });
+                if (response) {
+                    alert('Created new user successfully!');
+                    await this.fetchUsers();
+                }
             }
         },
         editUser(){
@@ -203,12 +217,9 @@ export default {
     },
     computed: {
         isFormValid() {
-            return (
+            return !!(
                 this.name &&
-                this.email &&
-                this.password &&
-                this.cPassword &&
-                this.password === this.cPassword
+                this.email
             );
         },
     },
