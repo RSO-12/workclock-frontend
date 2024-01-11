@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import LoginView from "../views/Public/LoginView.vue";
-// import beforeEach from "./before-each";
+import beforeEach from "./before-each";
 
 const routes = [
   {
@@ -24,5 +24,5 @@ const router = createRouter({
   routes,
 });
 
-// router.beforeEach(beforeEach);
+router.beforeEach(beforeEach);
 export default router;

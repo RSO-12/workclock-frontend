@@ -2,6 +2,10 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 
+// Services
+import RequestService from './services/request.service'
+import TokenService from './services/token.service'
+
 // Vuetify
 import vuetify from './plugins/vuetify.js'
 
@@ -13,6 +17,8 @@ import '@mdi/font/css/materialdesignicons.css';
 
 const pinia = createPinia()
 const app = createApp(App);
+RequestService.init(process.env.VUE_APP_BASE_API)
+TokenService.readFromStorage();
 app.use(vuetify);
 app.use(router);
 app.use(pinia);

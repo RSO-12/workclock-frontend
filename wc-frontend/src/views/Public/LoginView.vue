@@ -54,6 +54,10 @@
 </template>
 
 <script>
+import { useAccountStore } from "@/store/account.store.js";
+import UserService from "@/services/user.service.js";
+import { mapStores } from "pinia";
+import { useSocketStore } from "@/store/socket.store";
 
 export default {
     data() {
@@ -63,10 +67,21 @@ export default {
       errors: "",
     };
   },
+  computed: {
+    ...mapStores(useAccountStore, useSocketStore)
+  },
   name: 'LoginView',
   methods: {
     logIn() {
-        
+      UserService.logIn(this.email, this.password)
+        .then(({ is_admin }) => {
+          this.accountStore.isAdmin = is_admin;
+          useSocketStore().connect(this.email);
+          this.$router.push({ name: "home" });
+        })
+        .catch(() => {
+          this.errors = 'Invalid credentials';
+        });
     }
   },
 }

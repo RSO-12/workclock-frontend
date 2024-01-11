@@ -65,12 +65,14 @@
 </template>
 
 <script>
+import { mapStores } from "pinia";
 import HomePageComponent from '@/components/HomePageComponent.vue';
 import HistoryComponent from '@/components/HistoryComponent.vue';
 import AdminControlPanelComponent from '@/components/AdminControlPanelComponent.vue';
 import ProfileComponent from '@/components/Profile/ProfileComponent.vue';
 import ChatComponent from '@/components/ChatComponent.vue';
 import UsersComponent from '@/components/UsersComponent.vue';
+import { useSocketStore } from '@/store/socket.store';
 
 export default {
   name: 'HomeView',
@@ -94,6 +96,9 @@ export default {
       ],
     };
   },
+  computed: {
+    ...mapStores(useSocketStore),
+  },
   methods: {
     navigateTo(item) {
       this.currentComponent = item.component
@@ -109,8 +114,8 @@ export default {
       if (this.message == "") {
         return;
       }
-      //this.$eventBus.$emit("notification", {title: "New message", text: this.message, type: "info"})
-      // useChatStore().sendMessage(this.message, this.inputAttachments);
+
+      useSocketStore().send(this.message);
       this.clearMessage();
     },
     clearMessage() {
