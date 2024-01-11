@@ -282,12 +282,8 @@ export default {
       ];
     },
     async addUser() {
-      console.log(this.isFormValid);
       if (this.isFormValid) {
-        this.clearData();
-
         useLoader().show();
-
         try {
           const response = await RequestService.post(
             "services/v1/auth/register",
@@ -304,6 +300,7 @@ export default {
         } catch (error) {
           console.log(error);
         } finally {
+          this.clearData();
           useLoader().hide();
         }
       }
@@ -315,8 +312,6 @@ export default {
       this.addUserDialog = false;
       this.name = "";
       this.email = "";
-      this.password = "";
-      this.cPassword = "";
     },
   },
   computed: {
