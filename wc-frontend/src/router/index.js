@@ -5,7 +5,7 @@ import beforeEach from "./before-each";
 
 const routes = [
   {
-    path: process.env.VUE_APP_PUBLIC_PATH + "login",
+    path: "/login",
     name: "login",
     component: LoginView,
     meta: {
@@ -13,7 +13,7 @@ const routes = [
     },
   },
   {
-    path: process.env.VUE_APP_PUBLIC_PATH,
+    path: "/",
     name: "home",
     component: HomeView,
   },
