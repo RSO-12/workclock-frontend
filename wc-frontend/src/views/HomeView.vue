@@ -36,20 +36,18 @@
       </v-btn>
     </div>
     <div v-if="isChatOpen" class="chat-window">
-      <v-row class="chat-head d-flex justify-space-between align-center">
+      <v-row class="chat-head d-flex justify-space-between align-center px-2">
         <v-col cols="auto" class="pa-0 ma-0">
           <span class="font-weight-bold">Community chat</span>
         </v-col>
         <v-col cols="auto" class="pa-0 ma-0 d-flex justify-end">
-          <v-btn icon @click="isChatOpen = false" color="red" variant="text" elevation="1">
-            <v-icon>mdi-close</v-icon>
-          </v-btn>
+            <v-icon @click="isChatOpen = false" color="red" variant="text" size="26">mdi-close</v-icon>
         </v-col>
       </v-row>
       <div class="chat-messages ma-3">
         <ChatComponent></ChatComponent>
       </div>
-      <div>
+      <div class="d-flex align-end chat-text-field-container">
         <v-form style="width: 100%;">
           <v-text-field hide-details="auto" v-model="message" variant="solo" clear-icon="mdi-close-circle" clearable
             placeholder="Message" type="text" style="width: 100%;" ref="chatInput"
@@ -62,6 +60,7 @@
       </div>
     </div>
   </div>
+  <NotificationsComponent></NotificationsComponent>
 </template>
 
 <script>
@@ -72,6 +71,7 @@ import AdminControlPanelComponent from '@/components/AdminControlPanelComponent.
 import ProfileComponent from '@/components/Profile/ProfileComponent.vue';
 import ChatComponent from '@/components/ChatComponent.vue';
 import UsersComponent from '@/components/UsersComponent.vue';
+import NotificationsComponent from '@/components/NotificationsComponent.vue';
 import { useSocketStore } from '@/store/socket.store';
 
 export default {
@@ -81,6 +81,7 @@ export default {
     ChatComponent,
     ProfileComponent,
     UsersComponent,
+    NotificationsComponent,
   },
   data() {
     return {
@@ -114,7 +115,6 @@ export default {
       if (this.message == "") {
         return;
       }
-
       useSocketStore().send(this.message);
       this.clearMessage();
     },
@@ -208,8 +208,10 @@ export default {
 }
 
 .chat-head {
-  background-color: #eeeff2;
+  background-color: #d9dde5;
   margin: 0px;
+  height: 40px;
+  border-radius: 5px;
 }
 
 .chat-messages {
