@@ -11,7 +11,7 @@
             <v-icon left class="mr-2" size="24">{{ item.icon }}</v-icon>
             {{ item.title }}
           </v-btn>
-          <v-divider v-else-if="isAdmin"></v-divider>
+          <v-divider v-else-if="accountStore.isAdmin"></v-divider>
         </template>
       </div>
       <footer class="mt-auto py-4">
@@ -21,7 +21,7 @@
     <div class="main-content d-flex flex-column">
       <div class="content-header d-flex justify-end pa-2">
         <!--<span class="ml-5" style="font-size: 1.4em; font-weight: 600;">{{ currentTitle }}</span>-->
-        <img class="profile mr-5" src="../assets/user.png" alt="profile" @click="openProfile()">
+        <v-icon class="profile" size="45" @click="openProfile()">mdi-account-circle</v-icon>
       </div>
       <div>
         <component :is="currentComponent"></component>
@@ -75,6 +75,7 @@ import UsersComponent from '@/components/UsersComponent.vue';
 import NotificationsComponent from '@/components/NotificationsComponent.vue';
 import ConfirmDialogComponent from '@/components/ConfirmDialogComponent.vue';
 import { useSocketStore } from '@/store/socket.store';
+import { useAccountStore } from '@/store/account.store';
 
 export default {
   name: 'HomeView',
@@ -90,8 +91,7 @@ export default {
     return {
       currentComponent: HomePageComponent,
       currentTitle: 'Time tracker',
-      isAdmin: true,
-      isChatOpen: true,
+      isChatOpen: false,
       message: "",
       navItems: [
         { title: 'Time tracker', component: HomePageComponent, icon: 'mdi-clock', isDivider: false },
@@ -101,7 +101,7 @@ export default {
     };
   },
   computed: {
-    ...mapStores(useSocketStore),
+    ...mapStores(useSocketStore, useAccountStore),
   },
   methods: {
     navigateTo(item) {
@@ -126,7 +126,7 @@ export default {
     },
   },
   created() {
-    if (this.isAdmin) {
+    if (useAccountStore().isAdmin) {
       this.navItems.push({ title: 'Control panel', component: AdminControlPanelComponent, icon: 'mdi-security', isDivider: false });
       this.navItems.push({ title: 'Users', component: UsersComponent, icon: 'mdi-account-group', isDivider: false });
     }
@@ -232,11 +232,7 @@ footer {
   color: #9CA3AF;
 }
 
-.profile {
-  background-color: #D9D9D9;
-  border-radius: 50%;
-  height: 48px;
-  width: 48px;
-  cursor: pointer;
+.profile:hover {
+  opacity: 0.8;
 }
 </style>
