@@ -23,22 +23,6 @@
               </v-col>
             </v-row>
             <v-row>
-              <v-col class="pa-0 pt-2">
-                <v-sheet height="100%">
-                  <div class="text-subtitle-2 text-medium-emphasis text-left">
-                    CURRENT PASSWORD
-                  </div>
-                  <v-text-field
-                    v-model="currentPass"
-                    type="password"
-                    variant="solo"
-                    :rules="currentPasswordRule()"
-                    :error-messages="errors.old_password"
-                  ></v-text-field>
-                </v-sheet>
-              </v-col>
-            </v-row>
-            <v-row>
               <v-col class="pa-0">
                 <v-sheet height="100%">
                   <div
@@ -111,7 +95,6 @@ export default {
     profileSettinsDialog: false,
     name: "Brina",
     currentUser: null,
-    currentPass: null,
     newPass: null,  
     confirmPass: null,
     errors: [],
@@ -140,14 +123,12 @@ export default {
       useAccountStore().logOut();
     },
     clearPassFields() {
-      this.currentPass = "";
       this.newPass = "";
       this.confirmPass = "";
     },
     changePassword(){
       return;
     },
-    currentPasswordRule() {},
     passwordRules() {
       return [
         (value) => {

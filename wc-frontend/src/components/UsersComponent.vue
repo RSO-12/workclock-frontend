@@ -86,7 +86,7 @@
       <v-text-field v-model="email" type="email" placeholder="john@google.com" variant="solo" rounded="lg"
         bg-color="rgba(255, 255, 255, 0.02)" :rules="emailRules()" :error-messages="errors.email"></v-text-field>
       <div class="pl-1 text-subtitle-2 text-medium-emphasis text-left">
-        PASSWORD
+        ROLES
       </div>
       <v-checkbox value="1" label="Is admin" type="checkbox"></v-checkbox>
       <v-card-actions class="d-flex justify-end">

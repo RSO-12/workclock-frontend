@@ -91,7 +91,7 @@ export default {
       currentComponent: HomePageComponent,
       currentTitle: 'Time tracker',
       isAdmin: true,
-      isChatOpen: false,
+      isChatOpen: true,
       message: "",
       navItems: [
         { title: 'Time tracker', component: HomePageComponent, icon: 'mdi-clock', isDivider: false },
@@ -211,7 +211,8 @@ export default {
 }
 
 .chat-head {
-  background-color: #d9dde5;
+  background-color: #1e2737;
+  color: white;
   margin: 0px;
   height: 40px;
   border-radius: 5px;
@@ -221,7 +222,6 @@ export default {
   max-height: calc(100% - 130px);
   overflow-y: auto;
   flex-grow: 1;
-  width: 100%;
   box-sizing: border-box;
 }
 

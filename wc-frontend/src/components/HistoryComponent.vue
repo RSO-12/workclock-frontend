@@ -35,7 +35,7 @@
                         <td>{{ event.startTime }} - {{ event.endTime }}</td>
                         <td>{{ event.duration }}</td>
                         <td>
-                            <v-icon class="action-btn mr-2" color="blue">mdi-pencil</v-icon>
+                            <v-icon class="action-btn mr-2" color="blue" @click="editEvent(event)">mdi-pencil</v-icon>
                             <v-icon class="action-btn" color="red">mdi-delete</v-icon>
                         </td>
                     </tr>
@@ -45,24 +45,56 @@
 
         <v-dialog class="add-user-modal-dialog" v-model="editEventDialog">
             <v-card class="add-user-modal-card pa-5">
-                <v-card-text class="pa-0 ma-0 text-center">
-                    <h3>Edit event</h3>
-                </v-card-text>
-
+                <v-row class="text-center">
+                    <v-col>
+                        <h3>Edit event</h3>
+                    </v-col>
+                </v-row>
                 <v-row>
                     <v-col>
                         <div class="pl-1 text-subtitle-2 text-medium-emphasis text-left">
                             EVENT
                         </div>
-                        <v-select class="select-menu" :class="selectClass" v-model="selectedOption"
-                            :items="['Start', 'Work', 'Remote', 'Break', 'Lunch', 'Stop']" dense rounded solo
-                            hide-details></v-select>
+                        <v-select variant="solo" :class="selectClass" v-model="selectedOption"
+                            :items="['Start', 'Work', 'Remote', 'Break', 'Lunch', 'Stop']"></v-select>
+                    </v-col>
+                    <v-col>
+                        <div class="pl-1 text-subtitle-2 text-medium-emphasis text-left">
+                            DATE
+                        </div>
+                        <v-text-field v-model="selectedDate" variant="solo" rounded="lg"
+                            bg-color="rgba(255, 255, 255, 0.02)"></v-text-field>
+                    </v-col>
+                </v-row>
+                <v-row>
+                    <v-col>
+                        <div class="pl-1 text-subtitle-2 text-medium-emphasis text-left">
+                            START TIME
+                        </div>
+                        <v-text-field v-model="start_time" variant="solo" rounded="lg"
+                            bg-color="rgba(255, 255, 255, 0.02)"></v-text-field>
+                    </v-col>
+                    <v-col>
+                        <div class="pl-1 text-subtitle-2 text-medium-emphasis text-left">
+                            END TIME
+                        </div>
+                        <v-text-field v-model="end_time" variant="solo" rounded="lg"
+                            bg-color="rgba(255, 255, 255, 0.02)"></v-text-field>
+                    </v-col>
+                </v-row>
+                <v-row>
+                    <v-col>
+                        <div class="pl-1 text-subtitle-2 text-medium-emphasis text-left">
+                            NOTES
+                        </div>
+                        <v-textarea v-model="notes" variant="solo" rounded="lg"
+                            placeholder="Write down any work related notes."></v-textarea>
                     </v-col>
                 </v-row>
 
                 <v-card-actions class="d-flex justify-end">
-                    <v-btn color="primary" variant="flat" @click="clearData()">Cancel</v-btn>
-                    <v-btn color="primary" variant="flat" @click="addUser()">Add user</v-btn>
+                    <v-btn color="primary" variant="flat" @click="(openEditEventDialog()), clearData()">Cancel</v-btn>
+                    <v-btn color="primary" variant="flat" @click="editEvent()">Edit event</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
@@ -76,7 +108,7 @@ import { saveAs } from 'file-saver';
 export default {
     data() {
         return {
-            editEventDialog: true,
+            editEventDialog: false,
             events: [
                 { type: 'Work', color: '#14B8A6', date: '8.1.2024', startTime: '07:00:00', endTime: '09:48:58', duration: '02:48:58' },
                 { type: 'Break', color: '#FFB020', date: '8.1.2024', startTime: '09:48:58', endTime: '10:00:00', duration: '00:11:02' },
@@ -110,6 +142,17 @@ export default {
         },
         openEditEventDialog() {
             this.editEventDialog = !this.editEventDialog;
+        },
+        editEvent(event) {
+            this.editEventDialog = true;
+            this.selectedOption = event.type;
+            this.selectedDate = event.date;
+            this.start_time = event.startTime;
+            this.end_time = event.endTime;
+            this.notes = event.notes;
+        },
+        clearData() {
+            return;
         },
     },
 };
