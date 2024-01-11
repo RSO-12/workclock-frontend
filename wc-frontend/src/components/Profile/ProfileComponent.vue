@@ -103,7 +103,10 @@
 
 <script>
 
+import { useAccountStore } from '@/store/account.store';
+
 export default {
+
   data: () => ({
     profileSettinsDialog: false,
     name: "Brina",
@@ -134,7 +137,7 @@ export default {
       return;
     },
     logout(){
-      return;
+      useAccountStore().logOut();
     },
     clearPassFields() {
       this.currentPass = "";
