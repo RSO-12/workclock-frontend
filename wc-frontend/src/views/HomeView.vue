@@ -61,6 +61,7 @@
     </div>
   </div>
   <NotificationsComponent></NotificationsComponent>
+  <ConfirmDialogComponent></ConfirmDialogComponent>
 </template>
 
 <script>
@@ -72,6 +73,7 @@ import ProfileComponent from '@/components/Profile/ProfileComponent.vue';
 import ChatComponent from '@/components/ChatComponent.vue';
 import UsersComponent from '@/components/UsersComponent.vue';
 import NotificationsComponent from '@/components/NotificationsComponent.vue';
+import ConfirmDialogComponent from '@/components/ConfirmDialogComponent.vue';
 import { useSocketStore } from '@/store/socket.store';
 
 export default {
@@ -82,13 +84,14 @@ export default {
     ProfileComponent,
     UsersComponent,
     NotificationsComponent,
+    ConfirmDialogComponent,
   },
   data() {
     return {
       currentComponent: HomePageComponent,
       currentTitle: 'Time tracker',
       isAdmin: true,
-      isChatOpen: true,
+      isChatOpen: false,
       message: "",
       navItems: [
         { title: 'Time tracker', component: HomePageComponent, icon: 'mdi-clock', isDivider: false },
