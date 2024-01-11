@@ -70,6 +70,7 @@ import HistoryComponent from '@/components/HistoryComponent.vue';
 import AdminControlPanelComponent from '@/components/AdminControlPanelComponent.vue';
 import ProfileComponent from '@/components/Profile/ProfileComponent.vue';
 import ChatComponent from '@/components/ChatComponent.vue';
+import UsersComponent from '@/components/UsersComponent.vue';
 
 export default {
   name: 'HomeView',
@@ -77,6 +78,7 @@ export default {
     HomePageComponent,
     ChatComponent,
     ProfileComponent,
+    UsersComponent,
   },
   data() {
     return {
@@ -118,6 +120,7 @@ export default {
   created() {
     if (this.isAdmin) {
       this.navItems.push({ title: 'Control panel', component: AdminControlPanelComponent, icon: 'mdi-security', isDivider: false });
+      this.navItems.push({ title: 'Users', component: UsersComponent, icon: 'mdi-account-group', isDivider: false });
     }
   },
 }

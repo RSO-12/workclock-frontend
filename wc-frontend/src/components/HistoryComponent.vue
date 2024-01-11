@@ -23,6 +23,7 @@
                         <th>Date</th>
                         <th>Time</th>
                         <th>Duration</th>
+                        <th style="width: 110px;">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,10 +34,38 @@
                         <td>{{ event.date }}</td>
                         <td>{{ event.startTime }} - {{ event.endTime }}</td>
                         <td>{{ event.duration }}</td>
+                        <td>
+                            <v-icon class="action-btn mr-2" color="blue">mdi-pencil</v-icon>
+                            <v-icon class="action-btn" color="red">mdi-delete</v-icon>
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
+
+        <v-dialog class="add-user-modal-dialog" v-model="editEventDialog">
+            <v-card class="add-user-modal-card pa-5">
+                <v-card-text class="pa-0 ma-0 text-center">
+                    <h3>Edit event</h3>
+                </v-card-text>
+
+                <v-row>
+                    <v-col>
+                        <div class="pl-1 text-subtitle-2 text-medium-emphasis text-left">
+                            EVENT
+                        </div>
+                        <v-select class="select-menu" :class="selectClass" v-model="selectedOption"
+                            :items="['Start', 'Work', 'Remote', 'Break', 'Lunch', 'Stop']" dense rounded solo
+                            hide-details></v-select>
+                    </v-col>
+                </v-row>
+
+                <v-card-actions class="d-flex justify-end">
+                    <v-btn color="primary" variant="flat" @click="clearData()">Cancel</v-btn>
+                    <v-btn color="primary" variant="flat" @click="addUser()">Add user</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
     </div>
 </template>
 
@@ -44,6 +73,7 @@
 export default {
     data() {
         return {
+            editEventDialog: true,
             events: [
                 { type: 'Work', color: '#14B8A6', date: '8.1.2024', startTime: '07:00:00', endTime: '09:48:58', duration: '02:48:58' },
                 { type: 'Break', color: '#FFB020', date: '8.1.2024', startTime: '09:48:58', endTime: '10:00:00', duration: '00:11:02' },
@@ -71,6 +101,9 @@ export default {
     methods: {
         downloadFile() {
             alert('he-he');
+        },
+        openEditEventDialog() {
+            this.editEventDialog = !this.editEventDialog;
         },
     },
 };
@@ -108,7 +141,7 @@ td {
     border-spacing: 0px !important;
 }
 
-th {
+.history-table th {
     height: 50px;
     background-color: #ebecf3;
 }
@@ -135,5 +168,13 @@ th {
 
 .history-table tr:nth-child(even):hover {
     background-color: #d4d7df;
+}
+
+.action-btn {
+    cursor: pointer;
+}
+
+.action-btn:hover {
+    opacity: 0.7;
 }
 </style>

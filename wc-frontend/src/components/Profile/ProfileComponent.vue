@@ -74,6 +74,15 @@
               </v-col>
             </v-row>
             <v-row>
+              <v-col class="text-left pa-0 pb-3">
+                <v-btn
+                  class="mr-2"
+                  color="primary"
+                  @click="(profileSettinsDialog = false), logout()"
+                >
+                  Logout
+                </v-btn>
+              </v-col>
               <v-col class="text-right pa-0 pb-3">
                 <v-btn
                   class="mr-2"
@@ -122,6 +131,9 @@ export default {
       ];
     },
     updateUser(){
+      return;
+    },
+    logout(){
       return;
     },
     clearPassFields() {
