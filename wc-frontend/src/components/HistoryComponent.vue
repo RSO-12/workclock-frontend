@@ -76,14 +76,14 @@
                             START TIME
                         </div>
                         <v-text-field v-model="tempEvent.startTime" variant="solo" rounded="lg" type="time"
-                            suffix="PST"></v-text-field>
+                            ></v-text-field>
                     </v-col>
                     <v-col>
                         <div class="pl-1 text-subtitle-2 text-medium-emphasis text-left">
                             END TIME
                         </div>
                         <v-text-field v-model="tempEvent.endTime" variant="solo" rounded="lg" type="time"
-                            suffix="PST"></v-text-field>
+                            ></v-text-field>
                     </v-col>
                 </v-row>
                 <v-row>

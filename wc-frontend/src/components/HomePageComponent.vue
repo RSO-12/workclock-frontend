@@ -5,7 +5,7 @@
         <v-sheet class="time-card pa-2 ma-4 br-15 font-weight-bold d-flex align-center" elevation="1">
           <div class="time-display flex-grow-1 d-flex justify-center">01:45:02</div>
           <v-select class="select-menu" :class="selectClass" v-model="selectedOption"
-            :items="['Start', 'Work', 'Remote', 'Break', 'Lunch', 'Stop']" dense rounded solo hide-details></v-select>
+            :items="['Start', 'Work', 'Remote', 'Break', 'Lunch', 'Stop']" hide-details></v-select>
         </v-sheet>
       </v-col>
     </v-row>
@@ -139,8 +139,23 @@ export default {
 
 .select-menu {
   position: absolute;
+  color: white;
+  font-weight: bold !important;
+  letter-spacing: 5px !important;
   right: 0px;
   min-width: 150px;
+  margin-right: 5px;
+  border-radius: 15px;
+  border-bottom: 0px;
+}
+
+.v-field__outline{
+  --v-field-border-opacity: 0 !important;
+  --v-field-border-width: 0 !important;
+}
+
+.v-field__overlay{
+  background-color: none !important;
 }
 
 .select-start {
