@@ -125,8 +125,8 @@ export default {
       this.$eventBus.$emit(
         "confirmDialog",
         "deleteMessage",
-        "Delete Message",
-        "Are you sure you want to delete this message?",
+        "Delete user",
+        "Are you sure you want to delete this user?",
         () => {
           useLoader().show();
           try {

@@ -91,7 +91,7 @@ export default {
     return {
       currentComponent: HomePageComponent,
       currentTitle: 'Time tracker',
-      isChatOpen: true,
+      isChatOpen: false,
       message: "",
       navItems: [
         { title: 'Time tracker', component: HomePageComponent, icon: 'mdi-clock', isDivider: false },
@@ -190,6 +190,11 @@ export default {
   background-color: #242A38;
 }
 
+.nav-button.button-active {
+  color: #12B981;
+  background-color: #242A38; 
+}
+
 .chat-button {
   position: fixed;
   right: 20px;
@@ -199,8 +204,8 @@ export default {
 
 .chat-window {
   display: grid;
-  grid-template-rows: 50px 1fr auto; /* Header, Messages, Input */
-  grid-template-columns: 100%; /* Single column layout */
+  grid-template-rows: 50px 1fr auto;
+  grid-template-columns: 100%;
   gap: 10px;
   position: fixed;
   right: 20px;
